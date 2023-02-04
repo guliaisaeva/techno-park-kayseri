@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Methods</title>
+    <!-- link to w3school style -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+<table class="w3-table-all">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Company Name</th>
+            <th>Contact Name</th>
+            <th>City</th>
+        </tr>
+    </thead>
+    <tbody id="customers-table"></tbody>
+</table>
+
+<script>
+
+
+ //1) https://northwind.vercel.app/api/customers url den customerlar bir diziye atanacak ve 4 kolon tabloda gösterilecek. (id, companyName, contactName, city)
+ const url = 'customers.json';
+ const customerTable=document.getElementById('customers-table');
+ fetch(url)
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    let customers = data;
+    customers.map(customer=>{
+        let trElement = document.createElement('tr');
+
+        let tdId = document.createElement('td');
+        tdId.innerHTML = customer.id;
+
+        let tdName = document.createElement('td');
+        tdName.innerHTML = customer.companyName;
+
+        let tdCompany=document.createElement('td');
+        tdCompany.innerHTML = customer.contactName;
+
+        let tdCity=document.createElement('td');
+        tdCity.innerHTML = customer.address?.city;
+
+        trElement.appendChild(tdId);
+        trElement.appendChild(tdName);
+        trElement.appendChild(tdCompany);
+        trElement.appendChild(tdCity);
+        customerTable.appendChild(trElement);
+    })
+    // 2) kaç adet customer var?
+    let totalCustomer=customers.length;
+    console.log(`Customer sayisi: ${totalCustomer}`);
+
+    //3) a ( küçük veya büyük harf) ile başlayan customer ları console a yaz
+   let aIsimler= customers.filter(name=>name.contactName.toLowerCase().startsWith('a'));
+    console.log('A ile başlayan isimler:',aIsimler);
+    // 4) Country 'UK' olan customerları console a yaz
+    let countryUk=customers.filter(country=>country.address.country=="UK");
+    console.log('Customers from UK:',countryUk)
+    // 5) customer ları companyName e göre sırala ( sort )
+    let customersByCompanyName=customers.sort((a,b)=>a.companyName - b.companyName);
+    console.log('Sorted by company name:',customersByCompanyName);
+    // 6) id si "DUMON" olan customer ı console a yaz! tek bir object
+    let dumons = customers.find(name=>name.id=="DUMON");
+    console.log('Customers with Id "Dumon":',dumons)
+    // 7) *** Telefon numarası 1 ile başlayanları console a yaz
+    let phonesStartWithOne= customers.filter(p=>p.address.phone.startsWith('(1' || '1'));
+    console.log('1 ile baslayan telefon numaralar:',phonesStartWithOne);
+    // 8) ***** Telefon numaralarını console a aşağıdaki formatta yaz 4065555834
+   let phoneFormat=customers.map(p=> p.contactName +" "+ p.address.phone.replace(/[^0-9]/g, ''));
+    console.log('Formated phone:',phoneFormat);
+    })
+
+</script>
+</body>
+</html>
