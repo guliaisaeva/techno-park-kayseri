@@ -1,0 +1,273 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    font-family: sans-serif;
+    background: rgb(255,26,100);
+background: linear-gradient(81deg, rgba(255,26,100,1) 0%, rgba(129,67,211,1) 100%);
+}
+.container{
+    width: 1300px;
+    padding: 0 1rem;
+    margin: 0 auto;
+}
+
+img{
+    max-width: 100%;
+}
+.hero{
+    display: grid;
+     grid-template-areas:
+     'mainPage mainPage right-top'
+     'mainPage mainPage right-bottom';
+     gap: 10px;
+     padding: 10px;
+}
+.mainPage{
+   grid-area: mainPage;
+   background: url("https://images.unsplash.com/photo-1574782091246-c65ed4510300?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHRhY298ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60");
+     background-repeat: no-repeat;
+     background-size: cover;
+     height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 50px;
+}
+.mainPage h1,.mainPage p{
+    background-color: yellow;
+    text-align: center;
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-family: sans-serif;
+}
+i{
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: yellow;
+}
+.mainPage p
+{
+   width: 20%;
+   font-family: sans-serif;
+   font-weight: 700;
+}
+.right-top{
+    grid-area: right-top;
+    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.right-bottom{
+    grid-area:right-bottom ;
+    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+}
+
+/* nav */
+.menu-lits{
+display: flex;
+align-items: center;
+
+justify-content: space-evenly;
+margin-top: 1rem;
+}
+.menu-lits li{
+    background-color: yellow;
+    padding: 10px 0;
+    width: 260px;
+    text-align: center;
+}
+.menu-lits li a{
+    color: black;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+ }
+/*food section */
+.tacos{
+    background-color:#fff;
+    padding: 2rem;
+    text-align: center;
+}
+.contentBox{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+  justify-content: center;
+
+}
+ /* more information */
+ .more-info{
+    display: flex;
+    gap: 2rem;
+    background-color: #fff;
+    padding: 2rem;
+ }
+.more{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.more button{
+    background-color: yellow;
+    border: none;
+    width: 110px;
+    padding:0.5rem;
+}
+
+/* line */
+.line{
+    display: flex;
+    margin: 2rem 0;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.left-line,.right-line{
+    width: 40%;
+    height: 15px;
+    background-color: #fff;
+}
+.line span{
+    font-weight: 900;
+    text-align: center;
+}
+.left-line{
+    background: rgb(255,167,0);
+    background: linear-gradient(to left, rgba(255,181,0,0.8) 0%, rgba(255,167,0,0.2) 100%);
+}
+.right-line{
+    background: rgb(255,167,0);
+    background: linear-gradient(to right, rgba(255,167,0,0.8) 0%, rgba(255,167,0,0.2) 100%);
+}
+
+/* last section */
+.photoBox{
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    grid-template-rows: repeat(2,1fr);
+    gap: 2rem;
+    padding: 2rem 0;
+}
+.photoBox img{
+    width: 200px;
+    height: 200px;
+}
+.burger-menu{
+    margin: 2rem 0;
+    background-color: yellow;
+    width: 100px;
+    padding: 0.5rem;
+    text-align: center;
+    border: none;
+    display: none;
+}
+.fa-bars{
+    color: black;
+    font-size: 1rem;
+}
+
+/* responsive design */
+@media screen and (max-width: 800px){
+    .container{
+        width:700px;
+    }
+    .hero{
+        grid-template-areas:
+        'mainPage  right-top'
+        'mainPage  right-bottom'
+   }
+   nav{
+    display: none;
+   }
+   .burger-menu{
+    display: block;
+   }
+   .contentBox{
+    grid-template-columns: repeat(3,1fr);
+   }
+   .photoBox{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+    gap: 2rem;
+    padding: 2rem 0;
+}
+}
+@media screen and (max-width: 425px){
+    .container{
+        width:400px;
+    }
+    .hero{
+        grid-template-areas:
+        'mainPage'
+        'mainPage'
+   }
+   nav{
+    display: none;
+   }
+   .burger-menu{
+    display: block;
+   }
+   .contentBox{
+    grid-template-columns: repeat(3,1fr);
+   }
+   .photoBox{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+    gap: 2rem;
+    padding: 2rem 0;
+}
+.mainPage h1{
+    font-size: 1rem;
+    width:70%;
+}
+.mainPage p{
+    font-size: 0.5rem;
+    width:50%
+}
+
+.right{
+    display: none;
+}
+.contentBox{
+    grid-template-columns: repeat(1,1fr);
+   }
+   .photoBox{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(3,1fr);
+    gap: 1rem;
+    place-items: center;
+    padding: 2rem 0;
+
+}
+.photoBox img{
+  width: 400px;
+  height: 400px;
+}
+.taco-photo img {
+ width: 300px;
+ height: 300px;
+
+}
+}
+
