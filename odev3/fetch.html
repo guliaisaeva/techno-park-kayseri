@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch | Axios Task3</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+ <!-- Endpoint: https://northwind.vercel.app/api/suppliers
+1) Ekrana 4 input konulacak ( companyName, contactName ...) ve bir post işlemi yapılacak ( axios veya fetch ) yeni bir supplier eklenecek
+-->
+<div class="container">
+    <input id="contactTitle" type="text" placeholder="Contact Title"> <br>
+    <input id="companyName" type="text" placeholder="Company Name"> <br>
+    <input id="contactName" type="text" placeholder="Contact Name"> <br>
+    <input id="city" type="text" placeholder="City"><br>
+    <button onclick="infoPost()">Post</button>
+</div>
+<!-- 2) ul içerinde companyName ler gösterilecek (axios veya fetch. category örneği var) -->
+<ul id="companyNames"></ul>
+<button onclick="getCompanyNames()">Get compnay Names</button>
+<!-- 3) Ekrana bir input bir buton koy. Butona tıkladığında inputtan aldığı id ye uygun supplier ı silsin!  -->
+<input id="id" type="text" placeholder="Enter Id">
+<button onclick="deleteId()">Delete Id</button>
+<script>
+    // 1) Ekrana 4 input konulacak ( companyName, contactName ...) ve bir post işlemi yapılacak ( axios veya fetch ) yeni bir supplier eklenecek
+    function infoPost(){
+     const titleValue=document.getElementById('contactTitle').value;
+     const companyName=document.getElementById('companyName').value;
+     const contactName=document.getElementById('contactName').value;
+
+     let postData = {
+            title:titleValue,
+            name: name,
+            companyName:companyName,
+            contactName:contactName
+        }
+    axios.post('https://northwind.vercel.app/api/suppliers', postData).then(res=>{
+    let data=res.data;
+    console.log('response',data)
+    })
+    }
+
+    // 2) ul içerinde companyName ler gösterilecek (axios veya fetch. category örneği var)
+    function getCompanyNames(){
+        let companyNames=document.getElementById('companyNames');
+        axios.get('https://northwind.vercel.app/api/suppliers').then(res=>{
+            let cNames=res.data;
+            cNames.map(item=>{
+                let liElement=document.createElement('li');
+                liElement.innerHTML=item.companyName;
+                companyNames.appendChild(liElement);
+            })
+            console.log(cNames)
+        })
+    }
+    // 3) Ekrana bir input bir buton koy. Butona tıkladığında inputtan aldığı id ye uygun supplier ı silsin!
+   function deleteId(){
+const id=document.getElementById('id').value;
+console.log(id)
+axios.delete('https://northwind.vercel.app/api/suppliers/' + id)
+            .then(res => {
+                alert('Success! ' + id);
+                console.log(res.data)
+            })
+            .catch(err => {
+                alert('Error')
+            })
+    }
+</script>
+</body>
+</html>
